@@ -1,0 +1,35 @@
+{
+  "files": {
+    "main.css": "/PersonalWebsiteTest/static/css/main.6e92ce27.chunk.css",
+    "main.js": "/PersonalWebsiteTest/static/js/main.72f86de4.chunk.js",
+    "main.js.map": "/PersonalWebsiteTest/static/js/main.72f86de4.chunk.js.map",
+    "runtime-main.js": "/PersonalWebsiteTest/static/js/runtime-main.7a3bfad3.js",
+    "runtime-main.js.map": "/PersonalWebsiteTest/static/js/runtime-main.7a3bfad3.js.map",
+    "static/css/2.bb8df50c.chunk.css": "/PersonalWebsiteTest/static/css/2.bb8df50c.chunk.css",
+    "static/js/2.a889211f.chunk.js": "/PersonalWebsiteTest/static/js/2.a889211f.chunk.js",
+    "static/js/2.a889211f.chunk.js.map": "/PersonalWebsiteTest/static/js/2.a889211f.chunk.js.map",
+    "index.html": "/PersonalWebsiteTest/index.html",
+    "precache-manifest.e5c656740106a83999c56141a0c3ab7f.js": "/PersonalWebsiteTest/precache-manifest.e5c656740106a83999c56141a0c3ab7f.js",
+    "service-worker.js": "/PersonalWebsiteTest/service-worker.js",
+    "static/css/2.bb8df50c.chunk.css.map": "/PersonalWebsiteTest/static/css/2.bb8df50c.chunk.css.map",
+    "static/css/main.6e92ce27.chunk.css.map": "/PersonalWebsiteTest/static/css/main.6e92ce27.chunk.css.map",
+    "static/js/2.a889211f.chunk.js.LICENSE": "/PersonalWebsiteTest/static/js/2.a889211f.chunk.js.LICENSE",
+    "static/media/banner_1.jpg": "/PersonalWebsiteTest/static/media/banner_1.77f316be.jpg",
+    "static/media/banner_2.jpg": "/PersonalWebsiteTest/static/media/banner_2.5bc6413e.jpg",
+    "static/media/banner_3.jpg": "/PersonalWebsiteTest/static/media/banner_3.eaccd3da.jpg",
+    "static/media/banner_4.jpg": "/PersonalWebsiteTest/static/media/banner_4.cd9c30ea.jpg",
+    "static/media/banner_5.jpg": "/PersonalWebsiteTest/static/media/banner_5.2090cd6c.jpg",
+    "static/media/font-awesome.css": "/PersonalWebsiteTest/static/media/fontawesome-webfont.fee66e71.woff",
+    "static/media/slide_1.jpg": "/PersonalWebsiteTest/static/media/slide_1.f727e28f.jpg",
+    "static/media/slide_2.jpg": "/PersonalWebsiteTest/static/media/slide_2.cd6e342e.jpg",
+    "static/media/slide_3.jpg": "/PersonalWebsiteTest/static/media/slide_3.8fc0655b.jpg",
+    "static/media/slide_4.jpg": "/PersonalWebsiteTest/static/media/slide_4.aac08136.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7a3bfad3.js",
+    "static/css/2.bb8df50c.chunk.css",
+    "static/js/2.a889211f.chunk.js",
+    "static/css/main.6e92ce27.chunk.css",
+    "static/js/main.72f86de4.chunk.js"
+  ]
+}
