@@ -1,0 +1,159 @@
+@import "https://fonts.googleapis.com/css?family=Tangerine";
+body{
+        margin:0;
+        padding: 0;
+}
+ul, li, h1, h2, h3, h4, h5, h6 {
+        list-style-type: none;
+        list-style: none;
+        margin:0 auto;
+        padding:0
+        ;margin-block-start: 0em;
+        margin-block-end: 0em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+}
+
+.banner-container {
+        border: 0 solid;
+        font-size: 16px;
+        height: 100vh;
+        width: calc(100%);
+        font-family: 'Volkorn', 'Crimson Text', sans-serif;
+}
+
+.banner-words {
+        display:  flex;
+        flex-direction: row;
+        flex-shrink: 0;
+        font-size: 1rem;
+        line-height: 1.5;
+        position: relative;
+        height:11.25rem;
+        letter-spacing: 2px;
+        background-color: #00B6FF;
+}
+.hide {
+        display: none;
+}
+.active {
+        display: block;
+}
+.banner-title {
+        overflow: hidden;
+        flex-grow: 1;
+        text-align: center;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 1.25rem;
+        padding: 1.25rem;
+        line-height: 5.5;
+        background-color: aliceblue;
+}
+
+.banner-title:first-child {
+        background-color: #00B6FF;
+}
+
+.banner-sliders {
+        background-color: rgba(0,0,0,.1);
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        height: calc(100vh - 11.25rem);
+        overflow: hidden;
+}
+.banner-images {
+        position: absolute;
+        top:0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        cursor: grabbing;
+}
+.banner-images li{
+        width: 100%;
+        height: 100%;
+}
+.banner-images li img{
+        width: 100%;
+        height: 100%;
+}
+.banner-introduction {
+        height: 12rem;
+        position: absolute;
+        right:0;
+        bottom: 0;
+        padding-left: 1.25rem;
+        display: flex;
+        flex-direction: row;
+        width: calc(45% - 5.5rem);
+        box-shadow: 2px 2px 2px aliceblue;
+        background-color: aliceblue;
+}
+
+.banner-introduction__group {
+        padding-right: 3rem;
+        padding-left: 1.5rem;
+        padding-top: 2.5rem;
+        width:100%;
+        position: relative;
+        display: flex;
+        flex-direction: row;
+}
+.banner-descriptions li {
+        background-color: aliceblue;
+        text-align: left;
+        width: 100%;
+        margin-right: 20px;
+}
+
+.banner-descriptions li div h6 {
+        margin-bottom: 0.5rem;
+        font-size: 2.125em;
+        position: relative;
+        line-height: 1;
+        margin-bottom: 1rem;
+        font-style: italic;
+        font-family: 'Crimson Text',serif;
+}
+
+@keyframes fadeBackground {
+        from {
+                transform: translateY(-100%);
+                background-color: aliceblue;
+        }
+        to {
+                transform: translateY(0);
+                background-color: cornsilk;;
+        }
+}
+
+.banner-descriptions li div {
+        font-weight: 500;
+        font-size: 1.125rem;
+        width: 22rem;
+}
+
+.banner-dots {
+        position: relative;
+        margin-left:12px;
+        top:8px;
+        height: 8rem;
+        flex-direction: column;
+        display: flex;
+}
+.banner-dots li {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        margin:5px auto;
+        border:1px solid grey;
+        transition: 0.3s ease;
+}
+.banner-dots .active {
+        background-color: black;
+}
+.banner-dots li:hover {
+        border: 1px solid black;
+}
