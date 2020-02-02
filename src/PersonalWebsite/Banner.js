@@ -4,6 +4,7 @@ import Slider1 from "./images/slide_1.jpg";
 import Slider2 from "./images/slide_2.jpg"
 import Slider3 from "./images/slide_3.jpg";
 import Slider4 from "./images/slide_4.jpg";
+import Swiper from "react-id-swiper"
 import anime from "animejs";
 class Banner extends React.Component {
         constructor(props) {
@@ -51,7 +52,7 @@ class Banner extends React.Component {
                 this.setState({
                         timer: setInterval(() => {
                                 this.next();
-                        }, 3000)
+                        }, 1000)
                 })
         }
         change = (index) => {

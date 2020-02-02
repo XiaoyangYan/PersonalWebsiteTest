@@ -19,7 +19,7 @@ class SideBar extends React.Component {
                         ],
                         display:[false, false, false, false, false],
                         imgsClassName: ["banner_1", "banner_2", "banner_3", "banner_4", "banner_5"],
-                        words: ["Study", "Travel", "Projects", "Experience", "MyLife"],
+                        words: ["Introduction", "Travel", "Projects", "Experience", "MyLife"],
                         icons:[<FaBook onClick={this.iconOnClick} onMouseEnter={this.iconOnMouseEnter}/>
                                 ,<FaToriiGate onClick={this.iconOnClick} onMouseEnter={this.iconOnMouseEnter}/>
                                 ,<FaProjectDiagram onClick={this.iconOnClick} onMouseEnter={this.iconOnMouseEnter}/>
@@ -51,6 +51,7 @@ class SideBar extends React.Component {
                 show = show ? false : true;
                 document.getElementById("nav-menu").style.display = show ? "flex" : "none";
                 document.getElementById("main-banner").style.display = show ? "none" : "block";
+                document.getElementById("header").style.overflow =  show ? "hidden" : "auto";
                 this.setState({show});
                 anime.timeline({
                 }).add({
@@ -116,7 +117,7 @@ class SideBar extends React.Component {
                 })
         }
         subTitleOnClick = (e, index) => {
-                let {imgsClassName, display} = this.state;
+                let {display} = this.state;
                 anime.remove(e.target);
                 display = display.map((item, index) => false);
                 display[index] = true;
@@ -145,24 +146,16 @@ class SideBar extends React.Component {
                         delay:(el, i)=> 30*i,
                         offset:"+=600"
                 })
-                .add({
-                        targets: ".swiper-container",
-                        opacity:[0, 1],
-                        offset:"+=300"
-                })
         }
         subTitleOnLeave = (e) => {
-                let {display} = this.state;
-                display = display.map((item, index) => false);
-                this.setState({display: display});
                 anime.timeline({
                         targets: e.target,
                 })
                 .add({
                         targets: ".take-cover",
-                        translateX:[0],
-                        duration:1200,
-                        easing: 'easeOutExpo',
+                        translateX:[1000, 0],
+                        duration:600,
+                        easing: 'easeInExpo',
                 })
         }
         render() {
@@ -182,9 +175,8 @@ class SideBar extends React.Component {
                                         <div className="menu-category">
                                                 <div className="menu-stretch">
                                                         {icons.map((item, index) => 
-                                                                <a href="#study" className="menu-item"
-                                                                onMouseEnter={(e) => {this.subTitleOnClick(e, index)}} onMouseLeave={(e) =>{this.subTitleOnLeave(e)}}>{item}
-                                                                        <div key={index} style={display[index]?{fontWeight:600}:{fontWeight:200}}>{words[index]}</div>
+                                                                <a  key={index} href="#study" className="menu-item" onMouseEnter={(e) => {this.subTitleOnClick(e, index)}}>{item}
+                                                                        <div style={display[index]?{fontWeight:600}:{fontWeight:200}}>{words[index]}</div>
                                                                 </a>
                                                         )}
                                                         <ul>
@@ -195,10 +187,10 @@ class SideBar extends React.Component {
                                                                 <li><a href="#" className="inline"><i className="fa fa-youtube" onClick={this.iconOnClick} onMouseEnter={this.iconOnMouseEnter}></i></a></li>
                                                         </ul>
                                                 </div>
-                                                <ul className="swiper-container">
+                                                <ul className="inner-container" >
                                                         <li className="take-cover" id="take-cover"></li>
                                                         {imgs.map((item, index) => 
-                                                                <li key={index} className={imgsClassName[index]}
+                                                                <li key={index} className={imgsClassName[index]+" pictures"} onMouseEnter={this.subTitleOnLeave}
                                                                 style={display[index]?{opacity: 1} :{opacity: 0}}><img src={item} alt="alt"/></li>
                                                         )}
                                                 </ul>

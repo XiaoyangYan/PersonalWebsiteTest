@@ -53,10 +53,13 @@ class Banner extends React.Component {
 
         componentDidMount() {
                 this.start();
-                window.addEventListener('scroll', this.scrollDown);
+                document.getElementById("root").addEventListener("click", () => {
+                        console.log("clicked");
+                })
         }
         render(){
-                const {imgs, show, currIndex, titleBig, titleSub} = this.state;
+                console.log(window.screenY);
+                const {imgs, currIndex, titleBig, titleSub} = this.state;
                 return <div className="food-banner">
                 <ul className="food-banner__images">
                         {imgs.map((item, index) => 

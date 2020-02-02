@@ -1,7 +1,8 @@
 import React from 'react';
-import Home from "./FoodHomeExercise/Home/Home";
+import Banner1 from "./FoodHomeExercise/Banner/Banner"
 import Banner from "./PersonalWebsite/Banner";
 import Header from "./PersonalWebsite/Header";
+import Home from "./PersonalWebsite/Home";
 import {BrowserRouter as Router, Route} from "react-router-dom";
 class App extends React.Component {
         
