@@ -1,0 +1,36 @@
+.myprojects {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    color: white;
+    cursor: grabbing;
+    background-color: #9B308C;
+}
+
+.myprojects-nav {
+    position: relative;
+    top: 15%;
+    left: 12%;
+    z-index: 10;
+}
+
+.myprojects-nav p {
+    font-size: 3rem;
+    opacity: 0.5;
+    width: fit-content;
+    cursor: pointer;
+}
+
+.myprojects-banner {
+    position: absolute;
+    top: 15%;
+    left: 25%;
+    opacity: 0.5;
+}
+
+.myprojects-images {
+    padding: 10px 8px;
+    width: 65rem;
+    height: 40rem;
+    /* transition: background-color  0.7s ease, margin 2.5s ease; */
+}
