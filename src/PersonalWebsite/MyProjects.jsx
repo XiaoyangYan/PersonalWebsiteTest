@@ -16,7 +16,7 @@ class MyProjects extends React.Component {
                         projectName:["Html5 Phaser Game", "Meal Recommender(New Meal)", "JavaFx Game(Let's Amazing)",
                                                         "Shield Tasker Application", "Blossom Season Blog Site", "Xiao's Mall(Shopping mall)" ],
                         projectPictures:[Project1, Project2, Project3, Project4, Project5, Project6],
-                        backgroundColors:["#9B308C","#080822","#6B554C","#519960", "#003D6C", "#00B6FF" ],
+                        backgroundColors:["#9B308C","#080822","#6B554C","#519960", "#003D6C", "#f4c20a" ],
                         currBackgroundColor: "#9B308C",
                         currProjectIndex: 0,
                 }
@@ -25,7 +25,7 @@ class MyProjects extends React.Component {
             const {projectName, projectPictures, currBackgroundColor,backgroundColors, currProjectIndex} = this.state;
                 return (
                         <>
-                        <h1 className="timeline-banner">My Projects</h1>
+                        <h1 className="projects-title">My Projects</h1>
                         <section className="myprojects"  style={{backgroundColor: `${currBackgroundColor}`}}
                         onMouseLeave = {(e) => {
                             anime.remove(".myprojects-images");
@@ -37,7 +37,7 @@ class MyProjects extends React.Component {
                                 elasticity: 300
                             })
                         }}
-                        onMouseMove ={(e) => {
+                        onMouseOver ={(e) => {
                             const mousePos = {
                                 x: e.pageX ? e.pageX : document.body.scrollLeft - document.body.clientLeft, 
                                 y: e.pageY? e.pageY : document.body.scrollLeft - document.body.clientTop,
