@@ -1,50 +1,48 @@
 Personal Website
-想三年前，金戈铁马，气吞万里如虎。雄赳赳，气昂昂，零丁洋里望南洋。 
-如今欲归，元嘉草草，赢得仓皇北顾。心沉沉，意消消，不思量自当绝望。
-后世小子，莫要学我，人生若如初见。天苍苍，野茫茫，柳暗花明终归乡。
+        想三年前，金戈铁马，气吞万里如虎。雄赳赳，气昂昂，零丁洋里望南洋。 
+        如今欲归，元嘉草草，赢得仓皇北顾。心沉沉，意消消，不思量自当绝望。
+        后世小子，莫要学我，人生若如初见。天苍苍，野茫茫，柳暗花明终归乡。
 
-https://xiaoyangyan.github.io/PersonalWebsiteTest/
-总结我两月以来面试的经验: 
-如果各位喜欢点个star
-前端概念篇
-1。 http系列
-（1）浏览器缓存
-        强缓存：根据expires time来判断内存 max-age （相对缓存时间）
-        协商缓存：根据last-modified/if-modified-since 或 Etag/if-none-match 浏览器第一次请求资源，服务器返回这个资源同时，在response header
-        加上ETAG的header，这个header时根据当前请求的资源生成唯一一个表示。只要这个资源有变化和最后修改时间无关
-        浏览器第一次请求资源，服务器返回这个资源同时，在response header加上ETAG的header，这个header时根据当前请求的资源生成唯一一个表示。ETag: shotcat-66666只要资源有变化这个串就不同，跟最后修改时间没有关系，所以能很好的补充Last-Modified的问题.
-浏览器再次请求之歌资源时，在request的header加上if-none-match的header，这个header的值就是上一次请求时返回Etag的值
-服务器再次受到资源请求时，根据浏览器传过来If-None-Match和再根据资源生成一个新的Etag。如果这两个值相同就说明资源没有变化，否则就是有变化。
-ETag与If-None-Match > Last-Modified与If-Modified-Since, 同时存在时, 前者覆盖后者.
-Cache-Control > Expires > ETag > Last-Modified
-其他所有教程都是告诉你浏览器肯定是先检查强缓存,再检查协商缓存!但实际它们都忽略了一点.其实浏览器是先检查Cache-Control,如果为no-store.则浏览器 所有内容都不会缓存，强制缓存，协商缓存统统都不会触发!!!
-（2）http请求头
-        request header： 
-        response header：
- （3）解释cookie，localStorage和sessionStorage
-        都在浏览器端保存，都有大小限制，都受同源限制。
-        cookie 是纯文本字段，没有可执行代码。存储数据，当用户访问了某个网站，我们可以通过cookie来向访问者的电脑上储存数据，或者某些网站为了辨别用户身份，
-        进行session跟踪而储存在用户本地终端上的数据。可以存不同的domain和path在不同的cookie里面。
-        cookie主要应用于三个方面：会话状态管理（用户登录状态，购物车，游戏分数) , 个性化设置 （用户自定义设置，主题等）  浏览器行为跟踪。
-        set-cookie: value[; expires=date][; domain=domain][; path=path][; secure]httpOnlye]...
-        一个set cookie只能设置一个cookie，如果想设置多个cookie，需要同样多的set-cookie字段
-        浏览器不能保存超过30个cookie，服务器不能超过20个，每个cookie只有4KB储存能力。
-        cookie在设置的有效期有效， sessionStorage在窗口关闭前有效，localStorage永久有效。
-        cookie是字段，localStorage和sessionStorage可以用js方法进行存储 (setItem,getItem,removeItem)
-        sessionStorage不能共享，localStorage只能在同源文档之间共享，cookie在同源且符合path规则的文档之间分享。
-        localStorage的修改会促发其他文档窗口的update事件
-        httpOnly：
-         这个选项用来设置cookie是否能通过 js 去访问。默认情况下，cookie不会带httpOnly选项(即为空)，所以默认情况下，客户端是可以通过js代码去          访问（包括读取、修改、删除等）这个cookie的。当cookie带httpOnly选项时，客户端则无法通过js代码去访问（包括读取、修改、删除等）这个cookie。
- （4）同源， cors是什么， cors怎么实现？
-            同源是为了保证用户信息的安全，防止恶意的网站窃取。浏览器的同源策略，限制了不同的document或脚本对当前的document的读取或设置某些属性。
-            CORS是一个W3C标准，全称是"跨域资源共享"（Cross-origin resource sharing）。它允许浏览器向跨源服务器，发出XMLHttpRequest请求，
-            从而克服了AJAX只能同源使用的限制
-            CORS 分为两种请求，简单请求和非简单请求
-           
-        
-            withCredentials CORS请求默认不发送Cookie和Http认证信息。如果要把Cookie发到服务器，一方面要服务器同意，指定Access-Control-Allow-Credentials
-            字段。 Access-Control-Allow-Credentials: true.
-            var xhr = new XMLHttpRequest(); xhr.withCredentials = true;
+        https://xiaoyangyan.github.io/PersonalWebsiteTest/
+        总结我两月以来面试的经验: 
+        如果各位喜欢点个star
+        前端概念篇
+        1。 http系列
+        （1）浏览器缓存
+                                        强缓存：根据expires time来判断内存 max-age （相对缓存时间）
+                                        协商缓存：根据last-modified/if-modified-since 或 Etag/if-none-match 浏览器第一次请求资源，服务器返回这个资源同时，在response header
+                                        加上ETAG的header，这个header时根据当前请求的资源生成唯一一个表示。只要这个资源有变化和最后修改时间无关
+                                        浏览器第一次请求资源，服务器返回这个资源同时，在response header加上ETAG的header，这个header时根据当前请求的资源生成唯一一个表示。ETag: shotcat-66666只要资源有变化这个串就不同，跟最后修改时间没有关系，所以能很好的补充Last-Modified的问题.
+                                浏览器再次请求之歌资源时，在request的header加上if-none-match的header，这个header的值就是上一次请求时返回Etag的值
+                                服务器再次受到资源请求时，根据浏览器传过来If-None-Match和再根据资源生成一个新的Etag。如果这两个值相同就说明资源没有变化，否则就是有变化。
+                                ETag与If-None-Match > Last-Modified与If-Modified-Since, 同时存在时, 前者覆盖后者.
+                                Cache-Control > Expires > ETag > Last-Modified
+                                其他所有教程都是告诉你浏览器肯定是先检查强缓存,再检查协商缓存!但实际它们都忽略了一点.其实浏览器是先检查Cache-Control,如果为no-store.则浏览器 所有内容都不会缓存，强制缓存，协商缓存统统都不会触发!!!
+                                （2）http请求头
+                                        request header： 
+                                        response header：
+                                 （3）解释cookie，localStorage和sessionStorage
+                                        都在浏览器端保存，都有大小限制，都受同源限制。
+                                        cookie 是纯文本字段，没有可执行代码。存储数据，当用户访问了某个网站，我们可以通过cookie来向访问者的电脑上储存数据，或者某些网站为了辨别用户身份，
+                                        进行session跟踪而储存在用户本地终端上的数据。可以存不同的domain和path在不同的cookie里面。
+                                        cookie主要应用于三个方面：会话状态管理（用户登录状态，购物车，游戏分数) , 个性化设置 （用户自定义设置，主题等）  浏览器行为跟踪。
+                                        set-cookie: value[; expires=date][; domain=domain][; path=path][; secure]httpOnlye]...
+                                        一个set cookie只能设置一个cookie，如果想设置多个cookie，需要同样多的set-cookie字段
+                                        浏览器不能保存超过30个cookie，服务器不能超过20个，每个cookie只有4KB储存能力。
+                                        cookie在设置的有效期有效， sessionStorage在窗口关闭前有效，localStorage永久有效。
+                                        cookie是字段，localStorage和sessionStorage可以用js方法进行存储 (setItem,getItem,removeItem)
+                                        sessionStorage不能共享，localStorage只能在同源文档之间共享，cookie在同源且符合path规则的文档之间分享。
+                                        localStorage的修改会促发其他文档窗口的update事件
+                                        httpOnly：
+                                         这个选项用来设置cookie是否能通过 js 去访问。默认情况下，cookie不会带httpOnly选项(即为空)，所以默认情况下，客户端是可以通过js代码去          访问（包括读取、修改、删除等）这个cookie的。当cookie带httpOnly选项时，客户端则无法通过js代码去访问（包括读取、修改、删除等）这个cookie。
+                                 （4）同源， cors是什么， cors怎么实现？
+                                            同源是为了保证用户信息的安全，防止恶意的网站窃取。浏览器的同源策略，限制了不同的document或脚本对当前的document的读取或设置某些属性。
+                                            CORS是一个W3C标准，全称是"跨域资源共享"（Cross-origin resource sharing）。它允许浏览器向跨源服务器，发出XMLHttpRequest请求，
+                                            从而克服了AJAX只能同源使用的限制
+                                            CORS 分为两种请求，简单请求和非简单请求
+                    withCredentials CORS请求默认不发送Cookie和Http认证信息。如果要把Cookie发到服务器，一方面要服务器同意，指定Access-Control-Allow-Credentials
+                    字段。 Access-Control-Allow-Credentials: true.
+                    var xhr = new XMLHttpRequest(); xhr.withCredentials = true;
             
             CORS的请求方法 简单请求 和 非简单请求
             简单请求：
