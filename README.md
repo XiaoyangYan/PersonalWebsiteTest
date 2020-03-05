@@ -150,7 +150,20 @@ Personal Website
 
                           token；token 验证的 CSRF 防御机制是公认最合适的方案。(具体可以查看本系列前端鉴权中对token有详细描述)若网站同时存在 XSS 漏洞的时候，这个方法也是空谈。
     （6）内存泄露
+                不再用到的内存（一个不用到的值）没有及时释放，就叫做内存泄漏（memory leak）。
+
+                垃圾回收机制：引用计数
+                最常使用的方法叫做"引用计数"（reference counting）：语言引擎有一张"引用表"，
+                保存了内存里面所有的资源（通常是各种值）的引用次数。如果一个值的引用次数是0，就
+                表示这个值不再用到了，因此可以将这块内存释放
+
+                JavaScript的解释器可以检测到何时程序不再使用一个对象了，当他确定了一个对象是无用的时候，
+                他就知道不再需要这个对象，可以把它所占用的内存释放掉了
                 
+                js中最常用的垃圾回收方式就是标记清除。
+                当变量进入环境时，例如，在一个函数中声明一个变量，就将这个变量标记为"进入环境"，
+                从逻辑上讲，永远不能释放进入环境变量所占用的内存，因为只要执行流进入相应的环境，
+                就可能会用到它们。而当变量离开环境时，则将其标记为"离开环境"
        
     （7）浏览器输入url，之后一些列过程
                     在浏览器地址栏输入URL
@@ -278,8 +291,17 @@ Personal Website
                       通过绝对位移来脱离当前层叠上下文，形成新的Render Layer。
 
                       另外有些情况下，比如修改了元素的样式，浏览器并不会立刻reflow 或 repaint 一次，而是会把这样的操作积攒一批，然后做一次 reflow，这又叫异步 reflow 或增量异步 reflow。但是在有些情况下，比如resize 窗口，改变了页面默认的字体等。对于这些操作，浏览器会马上进行 reflow。
+      (12)    为什么css放在头部，js放在尾部
+                   在面试的过程中，经常会有人在回答页面的优化中提到将js放到body标签底部，原因是因为浏览器生成Dom树的时候是一行一行读HTML代
+                码的，script标签放在最后面就不会影响前面的页面的渲染。那么问题来了，既然Dom树完全生成好后页面才能渲染出来，浏览器又必须读
+                完全部HTML才能生成完整的Dom树，script标签不放在body底部是不是也一样，因为dom树的生成需要整个文档解析完毕。
 
-    （12）性能优化
+                我们再来看一下chrome在页面渲染过程中的，绿色标志线是First Paint的时间。纳尼，为什么会出现firstpaint，页面的paint
+                不是在渲染树生成之后吗？其实现代浏览器为了更好的用户体验,渲染引擎将尝试尽快在屏幕上显示的内容。它不会等到所有HTML解析之前
+                开始构建和布局渲染树。部分的内容将被解析并显示。也就是说浏览器能够渲染不完整的dom树和cssom，尽快的减少白屏的时间。
+                假如我们将js放在header，js将阻塞解析dom，dom的内容会影响到First Paint，导致First Paint延后。所以说我们会将js放在
+                后面，以减少First Paint的时间，但是不会减少DOMContentLoaded被触发的时间。
+    （13）前端性能优化
                 安全问题：
                     a。xss攻击，就是攻击者想尽一切办法将可以执行的代码注入到网页中。评论功能，写入脚本内容，入库了。get参数后面拼接了key=脚本；这种
                             很容易被写进页面。
@@ -309,4 +331,145 @@ Personal Website
                        静态资源放到CDN上；
                        离线存储：配置manifest配置应用程序缓存： CACHE MANIFEST， NETWORK， FALLBACK，（serviceWorker）
                                       优点：离线浏览 用户可在应用离线时使用它们； 速度 已缓存资源加载的更快；减少服务器负载  浏览器将只从服务器下载更新郭或更改过的资源
-       
+                    2。代码优化
+                        1。前端代码的压缩，合并，减少http请求，和文件大小
+                        2。图片处理设置最大边界， base64; 雪碧图
+                        3。少操作DOM 减少DOM回流，或者创建文档碎片
+                        4。preload 资源预加载属性
+                        5。图片懒加载
+                        6。静态资源放在CDN上
+                        7。离线存储 配置manifest配置应用程序缓存 ： CACHE MANIFEST， NETWORK， FALLBACK
+          （14）HTTP与HTTPS
+                        HTTP是客户端浏览器或其他程序与Web服务器之间的应用层通信协议。浏览器通过超文本传输协议(HTTP)，将Web服务器上站点的网页代码提取出来，并翻译成漂亮的网页。
+                        GET: 获取URL指定的资源；
+                        POST：传输实体信息
+                        PUT：上传文件
+                        DELETE：删除文件
+                        HEAD：获取报文首部，与GET相比，不返回报文主体部分
+                        OPTIONS：询问支持的方法
+                        TRACE：追踪请求的路径；
+                        CONNECT：要求在与代理服务器通信时建立隧道，使用隧道进行TCP通信。主要使用SSL和TLS将数据加密后通过网络隧道进行传输。
+                        
+                        
+                        超文本传输安全协议（英语：Hypertext Transfer Protocol Secure，缩写：HTTPS，常称为HTTP over TLS，HTTP over SSL或HTTP Secure）是一种通过计算机网络进行安全通信的传输协议。
+                        
+                        HTTP 与 HTTPS 的区别
+
+                        HTTP 是明文传输，HTTPS 通过 SSL\TLS 进行了加密
+                        HTTP 的端口号是 80，HTTPS 是 443
+                        HTTPS 需要到 CA 申请证书，一般免费证书很少，需要交费
+                        HTTP 的连接很简单，是无状态的；HTTPS 协议是由 SSL+HTTP 协议构建的可进行加密传输、身份认证的网络协议，比 HTTP 协议安全。
+
+                        HTTPS主要作用是：
+
+                        对数据进行加密，并建立一个信息安全通道，来保证传输过程中的数据安全
+                        对网站服务器进行真实身份认证
+                        
+                        HTTPS缺点
+
+                        HTTPS协议握手阶段比较费时，会使页面的加载时间延长近50%，增加10%到20%的耗电；
+                        https连接缓存不如http高效，如果是大流量网站,则会造成流量成本太高。
+                        https连接服务器端资源占用高很多，支持访客稍多的网站需要投入更大的成本，如果全部采用https，基于大部分计算资源闲置的假设的VPS的平均成本会上去。
+                        SSL证书需要钱，功能越强大的证书费用越高，个人网站、小网站没有必要一般不会用。
+                        SSL证书通常需要绑定IP，不能再同一IP上绑定多个域名，IPv4资源不可能支撑这个消耗(SSL有扩展可以部分解决这个问题，但是比较麻烦，而且要求浏览器、操作系统支持，Windows XP就不支持这个扩展，考虑到XP的装机量，这个特性几乎没用)。
+         （14）前端需要注意哪些SEO
+	合理的title、description、keywords：搜索对着三项的权重逐个减小，title值强调重点即可，重要关键词出现不要超过2次，而且要靠前，不同页面title要有所不同；description把页面内容高度概括，长度合适，不可过分堆砌关键词，不同页面description有所不同；keywords列举出重要关键词即可
+	语义化的HTML代码，符合W3C规范：语义化代码让搜索引擎容易理解网页
+	重要内容HTML代码放在最前：搜索引擎抓取HTML顺序是从上到下，有的搜索引擎对抓取长度有限制，保证重要内容一定会被抓取
+	重要内容不要用js输出：爬虫不会执行js获取内容
+	少用iframe：搜索引擎不会抓取iframe中的内容
+	非装饰性图片必须加alt
+	提高网站速度：网站速度是搜索引擎排序的一个重要指标            
+        JS复习
+        （1） 闭包理解：
+                闭包就是能够读取其他函数内部变量的函数，或者子函数在外部调用，子函数所在父函数的作用域不会被释放，一个闭包就是当一个函数返回时，一个没有释放资源的栈区。 自由变量的查找，是在定义函数的地方，向上级作用域查找。
+        （2）this指针 及作用域
+                 普通函数this指针指向调用它的地方，如果用new生成的函数，this指针指向自己。箭头函数this的指向由作用域的上下文决定。箭头函数的this被绑定后不可更改。全局变量的this指向window，全局变量中的具名函数，匿名函数，闭包函数，箭头函数都指向window。
+       （3）call，apply，bind 显示绑定
+                1.call、apply与bind都用于改变this绑定，但call、apply在改变this指向的同时还会执行函数，而bind在改变this后是返回一个全新的boundFcuntion绑定函数，这也是为什么上方例子中bind后还加了一对括号 ()的原因。
+                2.bind属于硬绑定，返回的 boundFunction 的 this 指向无法再次通过bind、apply或 call 修改；call与apply的绑定只适用当前调用，调用完就没了，下次要用还得再次绑。
+                3.call与apply功能完全相同，唯一不同的是call方法传递函数调用形参是以散列形式，而apply方法的形参是一个数组。在传参的情况下，call的性能要高于apply，因为apply在执行时还要多一步解析数组。
+         （4）new绑定
+                  1。以构造器prototype属性为原型，创建新对象。2。将this（可以理解为上句创造的对象）和新调用参数传给构造器，执行。3. 如果构造器没有手动返回对象，则返回第一部创建的对象。
+        （5） 隐式绑定
+                  什么是隐式绑定？如果函数调用时，前面存在调用它的对象，那么this就会隐式绑定到这个对象上。
+       （6）ES6 
+                1。let, const, var 
+                
+                2。箭头函数
+                3。class constructor继承等
+                4。Promise
+                5。Spread
+                6。Destructor
+                7。Map, Set
+                8。Proxy
+                9。Reflect
+                10。Generator
+                11。async，await （ES7）
+                12。Array.from, Array.fill, Array.of
+         (7)懒加载，预加载
+         (8)事件冒泡       事件委托
+      （9）遍历方法 (for in/of)  /  for (let (index = ....) /Array.every / Array.some 
+       (10）函数curry化
+      （11）Eentloop运行机制    MicroTask/MacroTask    同步 =》 nextTick() => 目前所有微任务 =》 一个异步timer =》 check （下一轮）
+      （12）Ajax   （withCredentials)
+        (13) DOM 操作
+        （14） DOMContentLoaded 和 window.onloead
+        (15)BOM
+       (16) WebPack
+                  有哪些方式可以减少 Webpack 的打包时间？
+                        1.优化loader，通过exclude和include，优化loader的文件搜索范围；
+                      module.exports = {
+                        module: {
+                          rules: [
+                            {
+                              // js 文件才使用 babel
+                              test: /\.js$/,
+                              loader: 'babel-loader',
+                              // 只在 src 文件夹下查找
+                              include: [resolve('src')],
+                              // 不会去查找的路径
+                              exclude: /node_modules/
+                            }
+                          ]
+                        }
+                      }
+                      有哪些方式可以让 Webpack 打出来的包更小？
+      1.按需加载，
+      原理：当使用时候再去下载对应文件，返回一个promise；
+      2.代码压缩；uglifyJS-webpack-plugin    webpack-parallel-uglify-plyugin 并行压缩js
+  （17）instanceof  和 Object.prototype.toString.call()
+     (18)prototype 原型链
+   （19）new 实例化的过程 
+             1. 创建空对象           2.与这个新对象连接      3.属性方法被添加到this引用的对象中   4. 如果构造函数没有return其他对象，则返回this，即创建这个新对象。否则返回构造函数中返回的对象。
+  （20） ES5 继承方法
+                1。原型链继承： 原型链继承的基本思想是利用原型让一个引用类型继承另外一个引用类型的属性和方法
+                        function SubType(){}  SubType.prototype = new SuperType();
+                        缺点 1。没有办法给父类传递参数  2。 原型的所有引用类型会被所有实例共享
+                2。 借用构造函数： 在子类型的构造函数中调用超类型构造函数
+                        function SubType(name) {SuperType.call(this, name)}
+                        优点： 可以向父类传参数 解决了原型中包含引用类型值被所有实例共享的问题
+                        缺点：方法都在构造函数中定义，函数复用无从谈起。父类元素原型定义方法子类不可见
+                 3。 组合继承
+                        上述两种都有
+                        优点： 1。父类传参数 2。每个实例都有自己的属性 3。 实现了函数复用
+                        缺点： 无论什么情况下，都会调用两次父类型构造函数： 一次是在创建子类型原型的时候， 另一次是在子类型构造函数内部。
+                   4。 Object.create() 等同于原型继承   缺点 所有的实例都会共享。
+                   5。原型式继承/ 寄生式继承 （类似工厂模式）   function object(o) {
+                        function F(){}
+                        F.prototype = o;
+                        return new F();
+                   }
+                   缺点 寄生继承为对象添加函数，会由于不能做到函数复用而效率低下。
+                   同原型链实现继承一样，包含引用类型值的属性会被所有实例共享。
+                   6。 寄生组合继承
+                   所谓寄生组合式继承，即通过借用构造函数来继承属性，通过原型链的混成形式来继承方法，基本思路：
+                   不必为了指定子类型的原型而调用超类型的构造函数，我们需要的仅是超类型原型的一个副本，本质上就是使用寄生式继承来继承超类型的原型，然后再将结果指定给子类型的原型。寄生组合式继承的基本模式如下所示：
+                   第一步：创建超类型原型的一个副本
+                第二步：为创建的副本添加 constructor 属性
+                第三步：将新创建的对象赋值给子类型的原型
+                优点 ： 只调用了一次超类构造函数，效率更高。避免在SuberType.prototype上面创建不必要的、多余的属性，与其同时，原型链还能保持不变。
+因此寄生组合继承是引用类型最理性的继承范式。
+                （19）Promise
+                （20） IE 不兼容ES6箭头函数的方法：
+                        页面中引用pollyfill和browser.min.js  script 标签加上 type=text/babel
