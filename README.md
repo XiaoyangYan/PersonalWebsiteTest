@@ -1,7 +1,4 @@
 Personal Website
-        想三年前，金戈铁马，气吞万里如虎。雄赳赳，气昂昂，零丁洋里望南洋。 
-        如今欲归，元嘉草草，赢得仓皇北顾。心沉沉，意消消，不思量自当绝望。
-        后世小子，莫要学我，人生若如初见。天苍苍，野茫茫，柳暗花明终归乡。
 
         https://xiaoyangyan.github.io/PersonalWebsiteTest/
         总结我两月以来面试的经验: 
